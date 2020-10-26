@@ -65,7 +65,7 @@ public class TextureConverter : EditorWindow
                         else UnityEngine.Debug.LogError("Missing Textures!");
                     }
 
-                    EditorGUILayout.HelpBox("Puts the Roughness Map into the Metallic Map's Alpha Channel", MessageType.Info, true);
+                    EditorGUILayout.HelpBox("Inverts the Roughness Map and puts it into the Metallic Map's Alpha Channel", MessageType.Info, true);
                 }
                 break;
 
