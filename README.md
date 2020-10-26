@@ -15,13 +15,21 @@ python3 -m pip install --upgrade Pillow
 Then download the TextureConversion Latest Release and import the package into Unity.
 
 ## Usage
-Click the Texture Conversion Toolbar and open the Converter Window.
+**Click the Texture Conversion Toolbar and open the Converter Window.**
 
-Click the Dropdown to select Conversion Type.
+![Toolbar Image](https://i.imgur.com/a8YeHB8.png)
 
-Drag your Textures into the corresponding Slots and click Convert. 
+**Click the Dropdown to select Conversion Type.**
 
-The Converted Textures will be created in same folder as your original Textures
+![Dropdown Image](https://i.imgur.com/uTfeDrF.png)
+
+**Drag your Textures into the corresponding Slots and click Convert.**
+
+![TexSlot Image](https://i.imgur.com/LTD3Rln.png)
+
+**The Converted Textures will be created in same folder as your original Textures**
+
+![Converted Image](https://i.imgur.com/YDXz2Ae.png)
 
 ## Credits
 [Chromium](https://github.com/Chromum) - UnityEditor Integration
