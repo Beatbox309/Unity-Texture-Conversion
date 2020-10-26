@@ -6,8 +6,8 @@ using System.IO;
 using System;
 using System.Diagnostics;
 
-public enum ConverterTypes { Roughness_To_Metallic_Smoothness, Unity_Default_To_Valve_VR_Standard, BGRA_Normal_To_RGB_Normal, Invert_Yellow_Normal }
-public enum TextureTypes { Diffuse, Metallic, Gloss, Roughness, Normal }
+public enum ConverterTypes { Roughness_To_Metallic_Smoothness, Unity_Default_To_Valve_VR_Standard, BGRA_Normal_To_RGB_Normal, Invert_Yellow_Normal, Invert_RGB_Texture }
+public enum TextureTypes { Diffuse, Metallic, Gloss, Roughness, Normal, Texture }
 
 public class TextureConverter : EditorWindow
 {
@@ -18,6 +18,7 @@ public class TextureConverter : EditorWindow
     public UnityEngine.Object Gloss;
     public UnityEngine.Object Diffuse;
     public UnityEngine.Object Normal;
+    public UnityEngine.Object Texture;
 
 
     [MenuItem("Texture Conversion/Converter Window")]
@@ -149,7 +150,6 @@ public class TextureConverter : EditorWindow
                     {
                         if (Normal != null)
                         {
-
                             string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
                             StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
                             sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
@@ -172,6 +172,39 @@ public class TextureConverter : EditorWindow
                     }
 
                     EditorGUILayout.HelpBox("Inverts Blue Channel on Normal Maps\nUse if your Normal Map is yellow", MessageType.Info, true);
+                }
+                break;
+
+            case ConverterTypes.Invert_RGB_Texture:
+                {
+                    GetTexture(TextureTypes.Texture);
+
+                    if (GUILayout.Button("Convert"))
+                    {
+                        if (Texture != null)
+                        {
+                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Texture));
+                            sr.Close();
+
+                            string[] files = Directory.GetFiles(scriptDict);
+                            string pyScript = null;
+
+                            for (int i = 0; i < files.Length; i++)
+                            {
+                                if (files[i].Contains("InvertRGB") && !files[i].Contains(".meta"))
+                                    pyScript = files[i];
+                            }
+
+                            RunCmd("\"" + pyScript + "\"");
+
+                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                        }
+                        else UnityEngine.Debug.LogError("Missing Textures!");
+                    }
+
+                    EditorGUILayout.HelpBox("Inverts RGB channels. Will preserve texture Alpha", MessageType.Info, true);
                 }
                 break;
 
@@ -206,6 +239,10 @@ public class TextureConverter : EditorWindow
             case TextureTypes.Normal:
                 Normal = EditorGUILayout.ObjectField(Normal, typeof(Texture));
                 break;
+
+            case TextureTypes.Texture:
+                Texture = EditorGUILayout.ObjectField(Texture, typeof(Texture));
+                break;
         }
     }
 
@@ -231,7 +268,7 @@ public class TextureConverter : EditorWindow
 
             for (int i = 0; i < files.Length; i++)
             {
-                if (files[i].Contains("InvertYellowNormal") && !files[i].Contains(".meta"))
+                if (files[i].Contains("SomeScript") && !files[i].Contains(".meta"))
                     pyScript = files[i];
             }
 
