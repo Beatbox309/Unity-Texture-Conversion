@@ -31,7 +31,7 @@ def Convert(diffPath,glossPath,normPath):
     # Normal Map
     nrmWhite = tcm.CreateBWImg(ogNorm.size,255)
     
-    normal = Image.merge("RGBA"Se,(normTuple[3],normTuple[1],nrmWhite,nrmWhite))
+    normal = Image.merge("RGBA",(normTuple[3],normTuple[1],nrmWhite,nrmWhite))
     normal.save(workingDir + "NormalMap.png")
     print("Images Saved!")
 
