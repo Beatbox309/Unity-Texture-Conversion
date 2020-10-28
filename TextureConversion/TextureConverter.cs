@@ -44,26 +44,33 @@ public class TextureConverter : EditorWindow
                     {
                         if (Roughness != null && Metallic != null)
                         {
-                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Roughness));
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Metallic));
-                            sr.Close();
+                            #region IDK IF I WANNA DO DIS YET SO..
+                            //string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            //StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Roughness));
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Metallic));
+                            //sr.Close();
 
-                            string[] files = Directory.GetFiles(scriptDict);
-                            string pyScript = null;
+                            //string[] files = Directory.GetFiles(scriptDict);
+                            //string pyScript = null;
 
-                            for (int i = 0; i < files.Length; i++)
-                            {
-                                if (files[i].Contains("MetallicSmoothnessConverter") && !files[i].Contains(".meta"))
-                                    pyScript = files[i];
-                            }
+                            //for (int i = 0; i < files.Length; i++)
+                            //{
+                            //    if (files[i].Contains("MetallicSmoothnessConverter") && !files[i].Contains(".meta"))
+                            //        pyScript = files[i];
+                            //}
 
-                            RunCmd("\"" + pyScript + "\"");
+                            //RunCmd("\"" + pyScript + "\"");
 
-                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            //UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            #endregion
+
+
+                            RunConverter("MetallicSmoothnessConverter", ConverterTypes.Roughness_To_Metallic_Smoothness);
                         }
                         else UnityEngine.Debug.LogError("Missing Textures!");
+
+
                     }
 
                     EditorGUILayout.HelpBox("Inverts the Roughness Map and puts it into the Metallic Map's Alpha Channel", MessageType.Info, true);
@@ -80,25 +87,27 @@ public class TextureConverter : EditorWindow
                     {
                         if (Diffuse != null && Gloss != null && Normal != null)
                         {
-                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Diffuse));
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Gloss));
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
-                            sr.Close();
+                            //string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            //StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Diffuse));
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Gloss));
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                            //sr.Close();
 
-                            string[] files = Directory.GetFiles(scriptDict);
-                            string pyScript = null;
+                            //string[] files = Directory.GetFiles(scriptDict);
+                            //string pyScript = null;
 
-                            for (int i = 0; i < files.Length; i++)
-                            {
-                                if (files[i].Contains("UnityDefaultToValveVRStandard") && !files[i].Contains(".meta"))
-                                    pyScript = files[i];
-                            }
+                            //for (int i = 0; i < files.Length; i++)
+                            //{
+                            //    if (files[i].Contains("UnityDefaultToValveVRStandard") && !files[i].Contains(".meta"))
+                            //        pyScript = files[i];
+                            //}
 
-                            RunCmd("\"" + pyScript + "\"");
+                            //RunCmd("\"" + pyScript + "\"");
 
-                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            //UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+
+                            RunConverter("UnityDefaultToValveVRStandard", ConverterTypes.Unity_Default_To_Valve_VR_Standard);
                         }
                         else UnityEngine.Debug.LogError("Missing Textures!");
                     }
@@ -117,23 +126,25 @@ public class TextureConverter : EditorWindow
                     {
                         if (Normal != null)
                         {
-                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
-                            sr.Close();
+                            //string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            //StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                            //sr.Close();
 
-                            string[] files = Directory.GetFiles(scriptDict);
-                            string pyScript = null;
+                            //string[] files = Directory.GetFiles(scriptDict);
+                            //string pyScript = null;
 
-                            for (int i = 0; i < files.Length; i++)
-                            {
-                                if (files[i].Contains("BGRA_Normal_To_RGBA_Normal") && !files[i].Contains(".meta"))
-                                    pyScript = files[i];
-                            }
+                            //for (int i = 0; i < files.Length; i++)
+                            //{
+                            //    if (files[i].Contains("BGRA_Normal_To_RGBA_Normal") && !files[i].Contains(".meta"))
+                            //        pyScript = files[i];
+                            //}
 
-                            RunCmd("\"" + pyScript + "\"");
+                            //RunCmd("\"" + pyScript + "\"");
 
-                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            //UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+
+                            RunConverter("BGRA_Normal_To_RGBA_Normal", ConverterTypes.BGRA_Normal_To_RGB_Normal);
                         }
                         else UnityEngine.Debug.LogError("Missing Textures!");
                     }
@@ -150,23 +161,25 @@ public class TextureConverter : EditorWindow
                     {
                         if (Normal != null)
                         {
-                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
-                            sr.Close();
+                            //string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            //StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                            //sr.Close();
 
-                            string[] files = Directory.GetFiles(scriptDict);
-                            string pyScript = null;
+                            //string[] files = Directory.GetFiles(scriptDict);
+                            //string pyScript = null;
 
-                            for (int i = 0; i < files.Length; i++)
-                            {
-                                if (files[i].Contains("InvertYellowNormal") && !files[i].Contains(".meta"))
-                                    pyScript = files[i];
-                            }
+                            //for (int i = 0; i < files.Length; i++)
+                            //{
+                            //    if (files[i].Contains("InvertYellowNormal") && !files[i].Contains(".meta"))
+                            //        pyScript = files[i];
+                            //}
 
-                            RunCmd("\"" + pyScript + "\"");
+                            //RunCmd("\"" + pyScript + "\"");
 
-                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            //UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+
+                            RunConverter("InvertYellowNormal", ConverterTypes.Invert_Yellow_Normal);
                         }
                         else UnityEngine.Debug.LogError("Missing Textures!");
                     }
@@ -183,23 +196,25 @@ public class TextureConverter : EditorWindow
                     {
                         if (Texture != null)
                         {
-                            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-                            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-                            sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Texture));
-                            sr.Close();
+                            //string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+                            //StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+                            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Texture));
+                            //sr.Close();
 
-                            string[] files = Directory.GetFiles(scriptDict);
-                            string pyScript = null;
+                            //string[] files = Directory.GetFiles(scriptDict);
+                            //string pyScript = null;
 
-                            for (int i = 0; i < files.Length; i++)
-                            {
-                                if (files[i].Contains("InvertRGB") && !files[i].Contains(".meta"))
-                                    pyScript = files[i];
-                            }
+                            //for (int i = 0; i < files.Length; i++)
+                            //{
+                            //    if (files[i].Contains("InvertRGB") && !files[i].Contains(".meta"))
+                            //        pyScript = files[i];
+                            //}
 
-                            RunCmd("\"" + pyScript + "\"");
+                            //RunCmd("\"" + pyScript + "\"");
 
-                            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+                            //UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+
+                            RunConverter("InvertRGB", ConverterTypes.Invert_RGB_Texture);
                         }
                         else UnityEngine.Debug.LogError("Missing Textures!");
                     }
@@ -221,60 +236,81 @@ public class TextureConverter : EditorWindow
         switch (texType)
         {
             case TextureTypes.Diffuse:
-                Diffuse = EditorGUILayout.ObjectField(Diffuse, typeof(Texture));
+                Diffuse = EditorGUILayout.ObjectField(Diffuse, typeof(Texture), false);
                 break;
 
             case TextureTypes.Metallic:
-                Metallic = EditorGUILayout.ObjectField(Metallic, typeof(Texture));
+                Metallic = EditorGUILayout.ObjectField(Metallic, typeof(Texture), false);
                 break;
 
             case TextureTypes.Gloss:
-                Gloss = EditorGUILayout.ObjectField(Gloss, typeof(Texture));
+                Gloss = EditorGUILayout.ObjectField(Gloss, typeof(Texture), false);
                 break;
 
             case TextureTypes.Roughness:
-                Roughness = EditorGUILayout.ObjectField(Roughness, typeof(Texture));
+                Roughness = EditorGUILayout.ObjectField(Roughness, typeof(Texture), false);
                 break;
 
             case TextureTypes.Normal:
-                Normal = EditorGUILayout.ObjectField(Normal, typeof(Texture));
+                Normal = EditorGUILayout.ObjectField(Normal, typeof(Texture), false);
                 break;
 
             case TextureTypes.Texture:
-                Texture = EditorGUILayout.ObjectField(Texture, typeof(Texture));
+                Texture = EditorGUILayout.ObjectField(Texture, typeof(Texture), false);
                 break;
         }
     }
 
-    public void RunConverter(string pyScriptName)
+    public void RunConverter(string pyScriptName, ConverterTypes type)
     {
         // should only check the textures that are being used for this converter
-        if (Diffuse != null && Metallic != null && Gloss != null && Roughness != null && Normal != null)
+        string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
+        StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
+
+        GetDirectroys(sr, type);
+
+        string[] files = Directory.GetFiles(scriptDict);
+        string pyScript = null;
+
+        for (int i = 0; i < files.Length; i++)
         {
-            string scriptDict = Directory.GetCurrentDirectory() + @"\Assets\Editor\TextureConversion\Scripts";
-            StreamWriter sr = File.CreateText(scriptDict + @"\Temp.txt");
-            // Call one or more of these depending on what the pyScript requires
-            // Pass in as string or tuple of TextureType enum?
+            if (files[i].Contains(pyScriptName) && !files[i].Contains(".meta"))
+                pyScript = files[i];
+        }
 
-            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Diffuse));
-            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Metallic));
-            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Gloss));
-            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Roughness));
-            //sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
-            sr.Close();
+        RunCmd("\"" + pyScript + "\"");
 
-            string[] files = Directory.GetFiles(scriptDict);
-            string pyScript = null;
+    }
 
-            for (int i = 0; i < files.Length; i++)
-            {
-                if (files[i].Contains("SomeScript") && !files[i].Contains(".meta"))
-                    pyScript = files[i];
-            }
-
-            RunCmd("\"" + pyScript + "\"");
-
-            UnityEngine.Debug.Log("python \"" + pyScript + "\"");
+    public void GetDirectroys(StreamWriter sr, ConverterTypes type)
+    {
+        switch (type)
+        {
+            case ConverterTypes.Roughness_To_Metallic_Smoothness:
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Roughness));
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Metallic));
+                sr.Close();
+                break;
+            case ConverterTypes.Unity_Default_To_Valve_VR_Standard:
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Diffuse));
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Gloss));
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                sr.Close();
+                break;
+            case ConverterTypes.BGRA_Normal_To_RGB_Normal:
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                sr.Close();
+                break;
+            case ConverterTypes.Invert_Yellow_Normal:
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Normal));
+                sr.Close();
+                break;
+            case ConverterTypes.Invert_RGB_Texture:
+                sr.WriteLine(Directory.GetCurrentDirectory() + @"\" + AssetDatabase.GetAssetPath(Texture));
+                sr.Close();
+                break;
+            default:
+                break;
         }
     }
 
