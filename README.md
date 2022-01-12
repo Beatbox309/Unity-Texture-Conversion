@@ -2,6 +2,8 @@
 ## Convert textures in the Unity Editor
 ### Programatically reformat textures with the Pillow Library in Python, all inside the Unity Editor.
 
+Created for modders in the Boneworks Community.
+
 ## Installation
 **Requires Python 3.8+ and Pillow. Tested in Unity 2018+.**
 
