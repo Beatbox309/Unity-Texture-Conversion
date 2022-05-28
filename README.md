@@ -4,6 +4,8 @@
 
 WIP refactor
 
+Texture Packer Inspired by [andydbc's repo](https://github.com/andydbc/unity-texture-packer)
+
 
 ## Credits
 [Chromium](https://github.com/Chromum) - UnityEditor Integration
