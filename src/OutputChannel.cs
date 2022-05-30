@@ -8,13 +8,14 @@
         Alpha
     }
 
-    public struct InputChannel
+    [System.Serializable]
+    public struct OutputChannel
     {
         public bool active;
         public TexChannel channel;
         public Operator op;
 
-        public InputChannel(TexChannel channel)
+        public OutputChannel(TexChannel channel)
         {
             this.channel = channel;
             this.active = false;

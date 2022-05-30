@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TextureConversion
 {
-    public class PackerPreset
+    [CreateAssetMenu(fileName = "New PackerPreset", menuName = "Packer Preset")] //@Temp
+    public class PackerPreset : ScriptableObject
     {
         //  InputTexture channel data should be persistent.
 
-        public string name;
-        public List<InputTexture> inputs;
+        public string title;
+        public List<InputTexture> inputTextures = new List<InputTexture>();
         public string settings; //  @Incomplete
     }
 }

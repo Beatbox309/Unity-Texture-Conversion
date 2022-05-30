@@ -7,6 +7,8 @@ namespace TextureConversion
 {
     public class TexturePackerWindow : EditorWindow
     {
+        private PackerPreset packPreset;
+
         [MenuItem("Texture Conversion/Texture Packer")]
         static void Open()
         {
@@ -15,7 +17,11 @@ namespace TextureConversion
 
         private void OnGUI()
         {
-            EditorGUILayout.LabelField("Texture Packer");
+            EditorGUILayout.Space();
+            packPreset = EditorGUILayout.ObjectField("Preset", packPreset, typeof(PackerPreset)) as PackerPreset;
+
+            if (packPreset)
+                (Editor.CreateEditor(packPreset) as PackerPresetEditor).DrawCustomGUI();
 
             if (GUILayout.Button("Generate"))
             {

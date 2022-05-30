@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b352522da86ccc4291c5114f7d65333, type: 3}
+  m_Name: New PackerPreset
+  m_EditorClassIdentifier: 
+  title: Test
+  inputTextures:
+  - texture: {fileID: 2800000, guid: 6d84bcbca94fab649ba1d364eb4a52ee, type: 3}
+  - texture: {fileID: 2800000, guid: b8700d37eaa522e4d849d732a3fec675, type: 3}
+  - texture: {fileID: 2800000, guid: 5b4b6a1defe4baa47acd2ba637e90bdd, type: 3}
+  settings: 
