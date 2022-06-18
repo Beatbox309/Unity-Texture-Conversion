@@ -9,15 +9,15 @@
     }
 
     [System.Serializable]
-    public struct OutputChannel
+    public struct InputChannel
     {
         public bool active;
-        public TexChannel channel;
+        public TexChannel outputChannel;
         public Operator op;
 
-        public OutputChannel(TexChannel channel)
+        public InputChannel(TexChannel outputChannel)
         {
-            this.channel = channel;
+            this.outputChannel = outputChannel;
             this.active = false;
             this.op = null;
         }

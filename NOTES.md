@@ -25,7 +25,7 @@ e.g.
 
 
 
-Converter		 = an interface for Packer Presets.
+Converter	 = an interface for Packer Presets.
 Packer Preset	 = a saveable collection of Input Textures with their channel/operator data.
 Input Texture	 = a Texture that passes it's channel data to the output Texture, optionally passing through an Operator.
 Channel Operator = a shader that transforms a Texture.
@@ -47,17 +47,23 @@ Instead we can make a Converter, which acts as an interface for a set of Presets
 Example:
 
 	RipDiffuse Preset {
-		Diff.RGB		   -> Output.RGB
+		Inputs: Diff
+		
+		Diff.RGB	  -> Output.RGB
 		Operator.Set(255) -> Output.Alpha
 	}
 	
 	RipMetallicSmooth Preset {
+		Inputs: Diff, Gloss
+
 		//	Metallic map is stored in the ripped diffuse's alpha channel
 		Diff.Alpha -> Output.Red
 		Gloss.Red  -> Output.Alpha
 	}
 
 	RipNormal Preset {
+		Inputs: Normal
+
 		Normal.Alpha	  -> Output.Red
 		Normal.Green	  -> Output.Green
 		Operator.Set(255) -> Output.BA
@@ -67,9 +73,9 @@ Example:
 	UnityRipToValveVRStandard Converter {
 		Inputs: Diffuse, Gloss, Normal
 
-		Diffuse -> RipDiffuse
-		Diffuse, Gloss -> RipMetallicSmooth
-		Normal  -> RipNormal
+		Diffuse -> RipDiffuse.Diff
+		Diffuse, Gloss -> RipMetallicSmooth.Diff and .Gloss
+		Normal  -> RipNormal.Normal
 	}
 
 	We can now just pass in our three Textures, and the Converter will apply the Presets and output each one seperately
